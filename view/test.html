@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/socket-client"></script>
+</head>
+<body>
+    <h3 id="svTime"></h3>
+    <button onclick="test()">test</button>
+</body>
+
+<script>
+    const socket = io();
+    function test(){
+        socket.emit('test',"12333333")
+    }
+
+    socket.on('timer',evnt=>{
+        document.getElementById('svTime').innerText = evnt
+    })
+</script>
+</html>

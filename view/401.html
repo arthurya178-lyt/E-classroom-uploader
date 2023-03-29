@@ -1,0 +1,54 @@
+<html lang="zh-hant-tw">
+<head>
+  <meta charset="utf-8">
+  <title>檔案上傳系統</title>
+  <!-- CSS only -->
+  <link href="/public/bootstrap-5.2.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- JavaScript Bundle with Popper -->
+  <script src="/public/bootstrap-5.2.2/js/bootstrap.bundle.min.js"></script>
+  <script src="/public/axios.min.js"></script>
+
+  <link rel="stylesheet" href="/public/bootstrap-icons-1.9.1/bootstrap-icons.css">
+</head>
+
+<body>
+<div class="container mt-5">
+  <div class="row d-flex justify-content-center">
+    <div class="col-6 card shadow " style="height:fit-content;">
+      <div class="container" style="margin-top: 50px;">
+        <form id="loginPanel" onsubmit="sendData()">
+          <div class="mb-5 row d-flex justify-content-center">
+            <h1 class="col-sm-10 fw-bolder text-center">登入系統</h1>
+          </div>
+          <div class="mb-3 row">
+            <label class="col-sm-3 col-form-label">帳號</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="account" placeholder="email@example.com">
+            </div>
+          </div>
+          <div class="mb-4 row">
+            <label class="col-sm-3 col-form-label">密碼</label>
+            <div class="col-sm-9">
+              <input type="password" id="password" class="form-control" >
+            </div>
+          </div>
+          <p class="text-danger" id="warning-msg"></p>
+          <div class="mb-5 row justify-content-center">
+            <input type="submit" class="btn btn-outline-primary col-sm-3 mx-2" value="登入">
+            <input type="reset" class="btn btn-outline-warning col-sm-3 mx-2" value="清除">
+          </div>
+        </form>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+
+</body>
+
+<script>
+
+</script>
+</html>

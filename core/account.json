@@ -1,0 +1,12 @@
+[
+	{
+		"id": 1,
+		"account": "Admin",
+		"user_name": "administrator",
+		"user_perm": "Teacher",
+		"std_id": "Admin",
+		"user_secret": "",
+		"password": "",
+		"session": "AY9YH1DQMCAZDXZ20G8PYGF5WSRA3WYP"
+	}
+]

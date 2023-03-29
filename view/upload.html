@@ -1,0 +1,104 @@
+<html lang="zh-hant-tw">
+<head>
+    <meta charset="utf-8">
+    <title>檔案上傳系統</title>
+    <!-- CSS only -->
+    <link href="/public/bootstrap-5.2.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="/public/bootstrap-5.2.2/js/bootstrap.bundle.min.js"></script>
+    <script src="/public/axios.min.js"></script>
+
+    <link rel="stylesheet" href="/public/bootstrap-icons-1.9.1/bootstrap-icons.css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-dark navbar-dark ">
+            <div class="container-fluid ">
+                <a class="navbar-brand text-white fw-bolder" href="/"><i class="bi bi-book mx-2"></i>Education Helper</a>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-white">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/upload">上傳檔案</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link " href="#">課業查詢</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="d-flex justify-content-right">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                帳戶服務
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/reset">修改密碼</a></li>
+                                <li><a class="dropdown-item" href="/logout">登出</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </nav>
+    </header>
+    <div class="container mt-5">
+        <div class="row d-flex justify-content-center">
+            <div class="col-6 card py-3" style="height:400px">
+                <form method="post" action="/upload" enctype="multipart/form-data">
+                    <h3 class="fw-bold">上傳檔案</h3>
+                    <div class="input-group mb-3">
+                        <label class="input-group-text bg-dark" for="myData"><i class="bi bi-file-earmark text-white"></i></label>
+                        <input type="file" class="form-control" id="myData" name="myUploadData" required multiple>
+                    </div>
+                    <button type="button" class="btn btn-primary" onclick="sendData()">上傳檔案</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+      <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">上傳通知</h5>
+                </div>
+                <div class="modal-body" id="modalBody">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    function sendData(){
+        let uploadFile = document.getElementById('myData').files
+        let formData = new FormData()
+        for(let i = 0 ; i < uploadFile.length;i++){
+            formData.append('myUploadData',uploadFile[i])
+        }
+        axios.post('/api/upload-multiple',formData).then(response=>{
+
+            if(response.data.success){
+                modalAction('上傳檔案成功！! , 伺服器已收到資料，系統已將檔案存在您的個人資料夾中。')
+            }
+            else {
+                modalAction('上傳檔案失敗,請檢查檔案是否異常!!')
+            }
+        })
+    }
+    function modalAction(msg){
+        let modal = new bootstrap.Modal(document.getElementById('staticBackdrop'))
+        let modalBody = document.getElementById('modalBody')
+        modalBody.innerText = msg
+        modal.show()
+    }
+</script>
+</html>
